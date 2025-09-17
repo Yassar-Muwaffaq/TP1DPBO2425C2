@@ -1,4 +1,5 @@
-*.exe
+Folder CPP/*.exe
+Folder Java/*.class
 .vscode/
-__pychache__/
+Folder Python/__pychache__/
 
