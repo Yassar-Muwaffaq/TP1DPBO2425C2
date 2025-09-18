@@ -137,6 +137,8 @@ Dibuat sebagai latihan pemrograman multi-bahasa
 
 Menggunakan pendekatan Object-Oriented Programming (OOP) di semua bahasa
 
+izin curhat kang teh hehe
+
 Kurang Aestetik kang teh maaf kepepet waktu ini baru ngerjain dari jam 12 Siang sekarang jam 14:31 
 hp rusak tidak dapat notif ada TP minggu kemarin sakit tidak bisa datang 17 september sore ini jam 5 
 pulang ke garut ada lagi tugas baru dan tugas kelompok seadanya saja ya kang teh 
@@ -150,3 +152,6 @@ phpnya tidak Aestetik ga mood buat design 18 september 2024 19:39
 next time next time... TP 2 aestetik 
 
 makasih akang teteh asprak sudah ngasih waktu buat saya ngerjain TP 18 september 2024 22:45
+
+di video PHP emang gagal pas tambah tapi pas di update normal aja ga terlalu paham apa yang salah
+jadi saya skip dulu mau rehat dulu makan 18 september 23:23
