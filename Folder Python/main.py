@@ -1,10 +1,10 @@
-from elektronik import Elektronik
+from Elektronik import Elektronik
 
 def main():
     daftar = [
-        Elektronik(1, "Laptop Gaming", "Laptop", "Asus", "Ryzen 7, 16GB RAM"),
-        Elektronik(2, "Smartphone", "HP", "Samsung", "8GB RAM, 256GB Storage"),
-        Elektronik(3, "TV LED", "Televisi", "LG", "42 inch, Full HD")
+        Elektronik(1, "Laptop Gaming", "Laptop", "Rak A", 5, "Mantap performanya"),
+        Elektronik(2, "Smartphone", "HP", "Rak B", 4, "Bagus tapi baterai boros"),
+        Elektronik(3, "Smart TV", "TV", "Rak C", 5, "Kualitas gambar oke banget")
     ]
 
     while True:
@@ -23,18 +23,18 @@ def main():
             if any(e.id == id for e in daftar):
                 print("ID sudah ada!")
                 continue
-            nama = input("Masukkan Nama: ")
-            kategori = input("Masukkan Kategori: ")
-            merk = input("Masukkan Merk: ")
-            spesifikasi = input("Masukkan Spesifikasi: ")
-            daftar.append(Elektronik(id, nama, kategori, merk, spesifikasi))
+            nama = input("Nama: ")
+            jenis = input("Jenis: ")
+            lokasi = input("Lokasi: ")
+            rating = int(input("Rating: "))
+            komen = input("Komen: ")
+            daftar.append(Elektronik(id, nama, jenis, lokasi, rating, komen))
 
         elif menu == "2":
             if not daftar:
                 print("Tidak ada barang.")
             else:
-                for e in daftar:
-                    e.view_barang()
+                for e in daftar: e.display()
 
         elif menu == "3":
             uid = int(input("Masukkan ID barang yang ingin diupdate: "))
@@ -42,14 +42,19 @@ def main():
             if not update:
                 print("Barang tidak ditemukan.")
             else:
-                nnama = input("Nama baru (kosong=skip): ")
+                nnama = input("Nama baru (skip=Enter): ")
                 if nnama: update.nama = nnama
-                nkategori = input("Kategori baru (kosong=skip): ")
-                if nkategori: update.kategori = nkategori
-                nmerk = input("Merk baru (kosong=skip): ")
-                if nmerk: update.merk = nmerk
-                nspesifikasi = input("Spesifikasi baru (kosong=skip): ")
-                if nspesifikasi: update.spesifikasi = nspesifikasi
+                njenis = input("Jenis baru (skip=Enter): ")
+                if njenis: update.jenis = njenis
+                nlokasi = input("Lokasi baru (skip=Enter): ")
+                if nlokasi: update.lokasi = nlokasi
+                try:
+                    nrating = input("Rating baru (0=skip): ")
+                    if nrating and int(nrating) > 0: update.rating = int(nrating)
+                except ValueError:
+                    pass
+                nkomen = input("Komen baru (skip=Enter): ")
+                if nkomen: update.komen = nkomen
                 print("Barang berhasil diupdate!")
 
         elif menu == "4":
@@ -58,13 +63,25 @@ def main():
             print(f"Barang dengan ID {did} berhasil dihapus.")
 
         elif menu == "5":
-            sid = int(input("Masukkan ID barang yang dicari: "))
-            cari = next((e for e in daftar if e.id == sid), None)
-            if not cari:
-                print("Barang tidak ditemukan.")
-            else:
-                cari.view_barang()
+            keyword = input("Masukkan kata kunci pencarian: ").lower()
+            hasil = []
 
+            for e in daftar:
+                if (keyword in str(e.get_id()).lower() or
+                    keyword in e.get_nama().lower() or
+                    keyword in e.get_jenis().lower() or
+                    keyword in e.get_lokasi().lower() or
+                    keyword in e.get_komen().lower() or
+                    keyword in str(e.get_rating()).lower()):
+                    hasil.append(e)
+
+            if hasil:
+                print("\nHasil Pencarian:")
+                for e in hasil:
+                    e.display()
+            else:
+                print("❌ Tidak ada data yang cocok.")
+                    
         elif menu == "6":
             break
 

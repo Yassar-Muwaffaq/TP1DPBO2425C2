@@ -1,40 +1,27 @@
 <?php
 class Elektronik {
-    private $id;
-    private $nama;
-    private $kategori;
-    private $merk;
-    private $spesifikasi;
+    private $id, $nama, $jenis, $lokasi, $rating, $komen;
 
-    public function __construct($id, $nama, $kategori, $merk, $spesifikasi) {
+    public function __construct($id, $nama, $jenis, $lokasi, $rating, $komen) {
         $this->id = $id;
         $this->nama = $nama;
-        $this->kategori = $kategori;
-        $this->merk = $merk;
-        $this->spesifikasi = $spesifikasi;
+        $this->jenis = $jenis;
+        $this->lokasi = $lokasi;
+        $this->rating = $rating;
+        $this->komen = $komen;
     }
 
-    // Getter
     public function getId() { return $this->id; }
     public function getNama() { return $this->nama; }
-    public function getKategori() { return $this->kategori; }
-    public function getMerk() { return $this->merk; }
-    public function getSpesifikasi() { return $this->spesifikasi; }
+    public function getJenis() { return $this->jenis; }
+    public function getLokasi() { return $this->lokasi; }
+    public function getRating() { return $this->rating; }
+    public function getKomen() { return $this->komen; }
 
-    // Setter
-    public function setNama($nama) { $this->nama = $nama; }
-    public function setKategori($kategori) { $this->kategori = $kategori; }
-    public function setMerk($merk) { $this->merk = $merk; }
-    public function setSpesifikasi($spesifikasi) { $this->spesifikasi = $spesifikasi; }
-
-    public function viewBarang() {
-        echo "<tr>
-                <td>{$this->id}</td>
-                <td>{$this->nama}</td>
-                <td>{$this->kategori}</td>
-                <td>{$this->merk}</td>
-                <td>{$this->spesifikasi}</td>
-              </tr>";
-    }
+    public function setNama($v) { $this->nama = $v; }
+    public function setJenis($v) { $this->jenis = $v; }
+    public function setLokasi($v) { $this->lokasi = $v; }
+    public function setRating($v) { $this->rating = $v; }
+    public function setKomen($v) { $this->komen = $v; }
 }
 ?>

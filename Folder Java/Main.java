@@ -6,9 +6,9 @@ public class Main {
         List<Elektronik> daftar = new ArrayList<>();
 
         // Data awal
-        daftar.add(new Elektronik(1, "Laptop Gaming", "Laptop", "Asus", "Ryzen 7, 16GB RAM"));
-        daftar.add(new Elektronik(2, "Smartphone", "HP", "Samsung", "8GB RAM, 256GB Storage"));
-        daftar.add(new Elektronik(3, "TV LED", "Televisi", "LG", "42 inch, Full HD"));
+        daftar.add(new Elektronik(1, "Laptop Gaming", "Laptop", "Rak A", 5, "Mantap performanya"));
+        daftar.add(new Elektronik(2, "Smartphone", "HP", "Rak B", 4, "Bagus tapi baterai boros"));
+        daftar.add(new Elektronik(3, "Smart TV", "TV", "Rak C", 5, "Kualitas gambar oke banget"));
 
         String menu;
         do {
@@ -27,31 +27,30 @@ public class Main {
                     System.out.print("Masukkan ID: ");
                     int id = Integer.parseInt(sc.nextLine());
 
-                    // Cek ID unik
-                    boolean exists = daftar.stream().anyMatch(e -> e.getId() == id);
-                    if (exists) {
+                    if (daftar.stream().anyMatch(e -> e.getId() == id)) {
                         System.out.println("ID sudah ada!");
                         break;
                     }
 
-                    System.out.print("Masukkan Nama: ");
+                    System.out.print("Nama: ");
                     String nama = sc.nextLine();
-                    System.out.print("Masukkan Kategori: ");
-                    String kategori = sc.nextLine();
-                    System.out.print("Masukkan Merk: ");
-                    String merk = sc.nextLine();
-                    System.out.print("Masukkan Spesifikasi: ");
-                    String spesifikasi = sc.nextLine();
+                    System.out.print("Jenis: ");
+                    String jenis = sc.nextLine();
+                    System.out.print("Lokasi: ");
+                    String lokasi = sc.nextLine();
+                    System.out.print("Rating: ");
+                    int rating = Integer.parseInt(sc.nextLine());
+                    System.out.print("Komen: ");
+                    String komen = sc.nextLine();
 
-                    daftar.add(new Elektronik(id, nama, kategori, merk, spesifikasi));
+                    daftar.add(new Elektronik(id, nama, jenis, lokasi, rating, komen));
                     break;
 
                 case "2":
-                    if (daftar.isEmpty()) {
+                    if (daftar.isEmpty())
                         System.out.println("Tidak ada barang.");
-                    } else {
-                        daftar.forEach(Elektronik::viewBarang);
-                    }
+                    else
+                        daftar.forEach(Elektronik::display);
                     break;
 
                 case "3":
@@ -61,21 +60,30 @@ public class Main {
                     if (update == null) {
                         System.out.println("Barang tidak ditemukan.");
                     } else {
-                        System.out.print("Nama baru (kosong=skip): ");
+                        System.out.print("Nama baru (skip=Enter): ");
                         String nnama = sc.nextLine();
-                        if (!nnama.isEmpty()) update.setNama(nnama);
+                        if (!nnama.isEmpty())
+                            update.setNama(nnama);
 
-                        System.out.print("Kategori baru (kosong=skip): ");
-                        String nkategori = sc.nextLine();
-                        if (!nkategori.isEmpty()) update.setKategori(nkategori);
+                        System.out.print("Jenis baru (skip=Enter): ");
+                        String njenis = sc.nextLine();
+                        if (!njenis.isEmpty())
+                            update.setJenis(njenis);
 
-                        System.out.print("Merk baru (kosong=skip): ");
-                        String nmerk = sc.nextLine();
-                        if (!nmerk.isEmpty()) update.setMerk(nmerk);
+                        System.out.print("Lokasi baru (skip=Enter): ");
+                        String nlokasi = sc.nextLine();
+                        if (!nlokasi.isEmpty())
+                            update.setLokasi(nlokasi);
 
-                        System.out.print("Spesifikasi baru (kosong=skip): ");
-                        String nspesifikasi = sc.nextLine();
-                        if (!nspesifikasi.isEmpty()) update.setSpesifikasi(nspesifikasi);
+                        System.out.print("Rating baru (0=skip): ");
+                        String rs = sc.nextLine();
+                        if (!rs.isEmpty())
+                            update.setRating(Integer.parseInt(rs));
+
+                        System.out.print("Komen baru (skip=Enter): ");
+                        String nkomen = sc.nextLine();
+                        if (!nkomen.isEmpty())
+                            update.setKomen(nkomen);
 
                         System.out.println("Barang berhasil diupdate!");
                     }
@@ -84,20 +92,30 @@ public class Main {
                 case "4":
                     System.out.print("Masukkan ID barang yang ingin dihapus: ");
                     int did = Integer.parseInt(sc.nextLine());
-                    daftar.removeIf(e -> e.getId() == did);
-                    System.out.println("Barang dengan ID " + did + " berhasil dihapus.");
+                    boolean removed = daftar.removeIf(e -> e.getId() == did);
+                    System.out.println(removed ? "Barang dihapus!" : "Barang tidak ditemukan.");
                     break;
 
                 case "5":
-                    System.out.print("Masukkan ID barang yang dicari: ");
-                    int sid = Integer.parseInt(sc.nextLine());
-                    Elektronik cari = daftar.stream().filter(e -> e.getId() == sid).findFirst().orElse(null);
-                    if (cari == null) {
-                        System.out.println("Barang tidak ditemukan.");
-                    } else {
-                        cari.viewBarang();
+                    System.out.print("Masukkan kata kunci pencarian: ");
+                    String keyword = sc.nextLine().toLowerCase();
+
+                    boolean found = false;
+                    for (Elektronik e : daftar) {
+                        if (String.valueOf(e.getId()).contains(keyword) ||
+                                e.getNama().toLowerCase().contains(keyword) ||
+                                e.getJenis().toLowerCase().contains(keyword) ||
+                                e.getLokasi().toLowerCase().contains(keyword) ||
+                                e.getKomen().toLowerCase().contains(keyword)) {
+                            e.display();
+                            found = true;
+                        }
                     }
-                    break;
+                    if (!found) {
+                        System.out.println("❌ Tidak ada data yang cocok.");
+                    }
+                break;
+
             }
 
         } while (!menu.equals("6"));

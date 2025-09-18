@@ -1,41 +1,44 @@
 class Elektronik:
-    def __init__(self, id, nama, kategori, merk, spesifikasi):
+    def __init__(self, id, nama, jenis, lokasi, rating, komen):
         self.id = id
         self.nama = nama
-        self.kategori = kategori
-        self.merk = merk
-        self.spesifikasi = spesifikasi
+        self.jenis = jenis
+        self.lokasi = lokasi
+        self.rating = rating
+        self.komen = komen
 
     def get_id(self):
         return self.id
-
+    
     def get_nama(self):
         return self.nama
-
-    def get_kategori(self):
-        return self.kategori
-
-    def get_merk(self):
-        return self.merk
-
-    def get_spesifikasi(self):
-        return self.spesifikasi
-
+    
+    def get_jenis(self):
+        return self.jenis
+    
+    def get_lokasi(self):
+        return self.lokasi
+    
+    def get_rating(self):
+        return self.rating
+    
+    def get_komen(self):
+        return self.komen
+    
     def set_nama(self, nama):
         self.nama = nama
+    
+    def set_jenis(self, jenis):
+        self.jenis = jenis
+    
+    def set_lokasi(self, lokasi):
+        self.lokasi = lokasi
+    
+    def set_rating(self, rating):
+        self.rating = rating
+    
+    def set_komen(self, komen):
+        self.komen = komen
 
-    def set_kategori(self, kategori):
-        self.kategori = kategori
-
-    def set_merk(self, merk):
-        self.merk = merk
-
-    def set_spesifikasi(self, spesifikasi):
-        self.spesifikasi = spesifikasi
-
-    def view_barang(self):
-        print(
-            f"ID: {self.id}, Nama: {self.nama}, "
-            f"Kategori: {self.kategori}, Merk: {self.merk}, "
-            f"Spesifikasi: {self.spesifikasi}"
-        )
+    def display(self):
+        print(f"ID: {self.id} | Nama: {self.nama} | Jenis: {self.jenis} | Lokasi: {self.lokasi} | Rating: {self.rating} | Komen: {self.komen}")

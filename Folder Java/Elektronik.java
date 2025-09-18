@@ -1,31 +1,39 @@
 public class Elektronik {
     private int id;
     private String nama;
-    private String kategori;
-    private String merk;
-    private String spesifikasi;
+    private String jenis;
+    private String lokasi;
+    private int rating;
+    private String komen;
 
-    public Elektronik(int id, String nama, String kategori, String merk, String spesifikasi) {
+    public Elektronik(int id, String nama, String jenis, String lokasi, int rating, String komen) {
         this.id = id;
         this.nama = nama;
-        this.kategori = kategori;
-        this.merk = merk;
-        this.spesifikasi = spesifikasi;
+        this.jenis = jenis;
+        this.lokasi = lokasi;
+        this.rating = rating;
+        this.komen = komen;
     }
 
     public int getId() { return id; }
     public String getNama() { return nama; }
-    public String getKategori() { return kategori; }
-    public String getMerk() { return merk; }
-    public String getSpesifikasi() { return spesifikasi; }
+    public String getJenis() { return jenis; }
+    public String getLokasi() { return lokasi; }
+    public int getRating() { return rating; }
+    public String getKomen() { return komen; }
 
     public void setNama(String nama) { this.nama = nama; }
-    public void setKategori(String kategori) { this.kategori = kategori; }
-    public void setMerk(String merk) { this.merk = merk; }
-    public void setSpesifikasi(String spesifikasi) { this.spesifikasi = spesifikasi; }
+    public void setJenis(String jenis) { this.jenis = jenis; }
+    public void setLokasi(String lokasi) { this.lokasi = lokasi; }
+    public void setRating(int rating) { this.rating = rating; }
+    public void setKomen(String komen) { this.komen = komen; }
 
-    public void viewBarang() {
-        System.out.println("ID: " + id + ", Nama: " + nama + ", Kategori: " + kategori +
-                ", Merk: " + merk + ", Spesifikasi: " + spesifikasi);
+    public void display() {
+        System.out.println("ID: " + id +
+                           " | Nama: " + nama +
+                           " | Jenis: " + jenis +
+                           " | Lokasi: " + lokasi +
+                           " | Rating: " + rating +
+                           " | Komen: " + komen);
     }
 }
